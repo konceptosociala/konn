@@ -1,0 +1,14 @@
+[workspace]
+
+resolver = "2"
+members = [ 
+    "konn_desktop", 
+    "konn_protocol",
+    "konn_render",
+]
+
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 3
