@@ -1,4 +1,4 @@
-use gtk::prelude::{ButtonExt, HeaderBarExt, LabelExt, NotebookExt, OrientableExt, WidgetExt};
+use gtk::prelude::{HeaderBarExt, NotebookExt, OrientableExt, WidgetExt};
 use gtk::{Orientation, Align};
 use relm::Widget;
 use relm_derive::{widget, Msg};
@@ -15,8 +15,6 @@ pub enum HeaderMsg {
 
 #[widget]
 impl Widget for Header {
-    fn model() {}
-
     fn update(&mut self, event: HeaderMsg) {
         match event {
             Add => println!("Add"),
@@ -45,4 +43,6 @@ impl Widget for Header {
             }
         }
     }
+
+    fn model() {}
 }

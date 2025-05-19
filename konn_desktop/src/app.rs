@@ -1,6 +1,6 @@
 use gtk::prelude::{GtkWindowExt, OrientableExt, WidgetExt};
-use gtk::{Inhibit, Orientation::*};
-use relm::{Component, Widget};
+use gtk::{Inhibit, Orientation};
+use relm::Widget;
 use relm_derive::{Msg, widget};
 
 use crate::widgets::header::Header;
@@ -16,7 +16,7 @@ pub const UI_THEME: &[u8] = include_bytes!("../themes/macos/gtk.gresource");
 pub const UI_THEME: &[u8] = include_bytes!("../themes/windows/gtk.gresource");
 
 pub struct AppModel {
-    header: Component<Header>,
+    
 }
 
 #[derive(Msg)]
@@ -30,9 +30,7 @@ impl Widget for App {
         #[cfg(any(target_os = "macos", target_os = "windows"))]
         App::apply_theme();
         
-        let header = relm::init::<Header>(()).expect("Cannot init header");
-
-        AppModel { header }
+        AppModel { }
     }
 
     fn update(&mut self, event: AppMsg) {
@@ -44,11 +42,15 @@ impl Widget for App {
     view! {
         #[name="window"]
         gtk::Window {
-            titlebar: Some(self.model.header.widget()),
+            titlebar: view! {
+                Header {
+
+                }
+            },
             size: (1024, 576),
 
             gtk::Box {
-                orientation: Vertical,
+                orientation: Orientation::Vertical,
 
                 Tab {
 
